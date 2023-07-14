@@ -1,0 +1,16 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  namespace: default
+  name: productpage
+spec:
+  selector:
+    matchLabels:
+      app: productpage
+  action: DENY
+  rules:
+  - to:
+    - operation:
+        methods: ["GET"]
+        ports: ["9080"]
+        paths: ["/productpage"]
